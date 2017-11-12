@@ -346,8 +346,10 @@ class OAuthRemoteApp(object):
             params['response_type'] = 'code'
             session[self.name + '_oauthredir'] = callback
             url = add_query(self.expand_url(self.authorize_url), params)
-
-        return redirect(url)
+            response = redirect(url)
+            response.headers = {'Access-Control-Expose-Headers':'true'}
+            # return redirect(url)
+            return response        
 
     def tokengetter(self, f):
         """Registers a function as tokengetter.  The tokengetter has to return
