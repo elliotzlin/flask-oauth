@@ -347,7 +347,7 @@ class OAuthRemoteApp(object):
             session[self.name + '_oauthredir'] = callback
             url = add_query(self.expand_url(self.authorize_url), params)
             response = redirect(url)
-            response.headers = {'Access-Control-Expose-Headers':'true'}
+            response.headers = {'Access-Control-Allow-Origin':'https://inventory-ba-backend.herokuapp.com/auth'}
             # return redirect(url)
             return response        
 
