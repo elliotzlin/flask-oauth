@@ -347,10 +347,9 @@ class OAuthRemoteApp(object):
             session[self.name + '_oauthredir'] = callback
             url = add_query(self.expand_url(self.authorize_url), params)
             print(url)
-            response = redirect(url)
-            response.headers = {'Access-Control-Allow-Origin':'https://inventory-ba-backend.herokuapp.com/auth'}
-            # return redirect(url)
-            return response        
+            headers = {'Access-Control-Allow-Origin':'*'}
+            #return redirect(url_for('https:))
+            print('Location: ' + url)
 
     def tokengetter(self, f):
         """Registers a function as tokengetter.  The tokengetter has to return
