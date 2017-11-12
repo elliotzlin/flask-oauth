@@ -341,7 +341,7 @@ class OAuthRemoteApp(object):
             # callback for the access_token_url we need to keep it in the
             # session.
             params = dict(self.request_token_params)
-            params['redirect_uri'] = callback
+            params['redirect_uri'] = 'http://localhost:5000' + callback
             params['client_id'] = self.consumer_key
             params['response_type'] = 'code'
             session[self.name + '_oauthredir'] = callback
@@ -395,6 +395,8 @@ class OAuthRemoteApp(object):
             'client_secret':    self.consumer_secret,
             'redirect_uri':     session.get(self.name + '_oauthredir')
         }
+        remote_args['redirect_uri'] = 'http://localhost:5000/oauth_authorized'
+        remote_args['grant_type'] = 'authorization_code'
         remote_args.update(self.access_token_params)
         if self.access_token_method == 'POST':
             resp, content = self._client.request(self.expand_url(self.access_token_url),
