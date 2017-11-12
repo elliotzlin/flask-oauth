@@ -347,8 +347,8 @@ class OAuthRemoteApp(object):
             session[self.name + '_oauthredir'] = callback
             url = add_query(self.expand_url(self.authorize_url), params)
             print(url)
-            headers = {'Access-Control-Allow-Origin':'*'}
-            return redirect(url, Response=Response(headers=headers))
+            #jheaders = {'Access-Control-Allow-Origin':'*'}
+            return redirect(url)
 
     def tokengetter(self, f):
         """Registers a function as tokengetter.  The tokengetter has to return
